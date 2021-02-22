@@ -81,7 +81,7 @@ a {
 }
 
 a:hover { 
-  color: #728B6B;
+  color: #643969;
   text-decoration: none !important;
 }
 
@@ -89,34 +89,36 @@ a:hover {
   Color
 ------------------------*/
 .primary-green {
-  color: #354A21;
+  color: #260e29;
 }
 
 .primary-light-green {
-  color: #728B6B;
+  color: #643969;
 }
 
 /* 
     CTA-Btn
 */
 .cta-btn{
-  background: transparent;
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
-  color: #728B6B;
   text-align: center;
-  border: 2px solid #728B6B ;
+  border: 2px solid #643969 ;
   transition: 0.5s !important;
   border-radius: 50px;
   letter-spacing: 1px;
   padding: 8px 24px !important;
   margin: 0 8px;
   cursor: pointer;
+  background: #643969;
+  color: #c3d3db!important;
 }
 
 .cta-btn:hover{
-  background: #728B6B;
-  color: #ffffff !important;
+  background: #c3d3db;
+  color: #643969 !important;
+  border: 2px solid #c3d3db ;
 }
+
