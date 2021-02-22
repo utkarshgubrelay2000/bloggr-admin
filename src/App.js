@@ -13,7 +13,7 @@ function App() {
 </div>
 <div className='text-center mr-12'> 
 
-<input className="form-check-input" type="text" name="exampleRadios" id="exampleRadios1" placeholder='Title'
+<input className="inputTitle" type="text" name="exampleRadios" id="exampleRadios1" placeholder='Title'
     />
 </div>
 <div className='p-4 m-2'> 
@@ -26,10 +26,10 @@ function App() {
       One of three columns
     </div>
     <div className="col-sm-2 " style={{height:'300px'}}>
-    <section type="section" className="btn btn-info m-1">
+    <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="H1"
     />
    
   <label className="form-check-label" for="exampleRadios1">
@@ -37,10 +37,10 @@ function App() {
   </label>
 </div>
    </section>
-   <section type="section" className="btn btn-info m-1">
+   <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="H2"
     />
    
   <label className="form-check-label" for="exampleRadios1">
@@ -48,10 +48,10 @@ function App() {
   </label>
 </div>
    </section>
-   <section type="section" className="btn btn-info m-1">
+   <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="H3"
     />
    
   <label className="form-check-label" for="exampleRadios1">
@@ -59,10 +59,10 @@ function App() {
   </label>
 </div>
    </section>
-   <section type="section" className="btn btn-info m-1">
+   <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="H3"
    />
    
   <label className="form-check-label" for="exampleRadios1">
@@ -70,10 +70,10 @@ function App() {
   </label>
 </div>
    </section>
-   <section type="section" className="btn btn-info m-1">
+   <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="H4"
    />
    
   <label className="form-check-label" for="exampleRadios1">
@@ -81,10 +81,10 @@ function App() {
   </label>
 </div>
    </section>
-   <section type="section" className="btn btn-info m-1">
+   <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="H5"
     />
    
   <label className="form-check-label" for="exampleRadios1">
@@ -92,10 +92,10 @@ function App() {
   </label>
 </div>
    </section>
-   <section type="section" className="btn btn-info m-1">
+   <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+  <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Para"
    />
    
   <label className="form-check-label" for="exampleRadios1">
