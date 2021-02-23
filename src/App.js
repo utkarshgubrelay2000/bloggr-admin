@@ -1,21 +1,24 @@
 import './App.css';
 import { Component } from 'react';
-
+import parse from 'html-react-parser';
 export default class admin extends Component  {
   state={
     blogContent:[],
     checkBox:"",
     title:"",
     thumbNail:'',
+    data:'<h1>hello</h1>',
     editTitle:true,
     showPreview:false,
-    titleStyling:{color:'green',textAlign:'center',fontSize:'32px'}
+    titleStyling:{color:'green',textAlign:'center',fontSize:'32px'},
+    blogData:"",show:false
   }
   onChangeHandler=(e)=>{
     this.setState({title:e.target.value,editTitle:true,showPreview:false})
   this.forceUpdate()
     
   }
+
   setTitleStyling=(e)=>{
     let name=e.target.name
     let newStyle;
@@ -59,10 +62,32 @@ titleSubmit=()=>{
   checkBoxValue=(e)=>{
     console.log(e.target.value)
     this.setState({checkBox:e.target.value})
+    this.forceUpdate()
+  }
+  setData=()=>{
+    let data=`<${this.state.checkBox}>  ${this.state.blogData} </${this.state.checkBox}>`
+    console.log(this.state.blogContent)
+    let blogContent=[]
+    blogContent.push(data)
+    let blogData=[...this.state.blogContent,...blogContent]
+    this.setState({blogContent:blogData})
+  }
+  parseHtml=()=>{
+    let reverseArray=this.state.blogContent
+   let all=reverseArray.join()
+   let a=all.replaceAll( ',','')
+   console.log(a)
+     this.setState({show:true ,data:a})
   }
   render(){
   return (
     <section className="App">
+      <button onClick={this.parseHtml}>
+show
+      </button>
+     { this.state.show?
+   parse(this.state.data)
+     :null}
 <div className="container">
 <nav className="navbar navbar-light bg-dark">
   <a className="navbar-brand" href="#">
@@ -112,14 +137,16 @@ titleSubmit=()=>{
       
     </div>
     <div className="col-sm-6">
-     <input type="text" />
-   
+     <input type="text" onChange={(e)=>this.setState({blogData:e.target.value})}/>
+     <button type="button"   onClick={this.setData} class="btn btn-secondary bg-dark">Done</button>
+  
     </div>
     <div className="col-sm-2 " style={{height:'300px'}}>
     <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" onChange={this.checkBoxValue} type="radio" name="exampleRadios" id="exampleRadios1" value="H1"
+  <input className="form-check-input" onChange={this.checkBoxValue} 
+  type="radio" name="exampleRadios" id="exampleRadios1" value="h1"
     />
    
   <label className="form-check-label" for="exampleRadios1">
@@ -130,7 +157,8 @@ titleSubmit=()=>{
    <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" type="radio" onChange={this.checkBoxValue}  name="exampleRadios" id="exampleRadios1" value="H2"
+  <input className="form-check-input" type="radio" onChange={this.checkBoxValue}  
+  name="exampleRadios" id="exampleRadios1" value="h2"
     />
    
   <label className="form-check-label" for="exampleRadios1">
@@ -138,21 +166,11 @@ titleSubmit=()=>{
   </label>
 </div>
    </section>
+
    <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" type="radio" onChange={this.checkBoxValue} name="exampleRadios" id="exampleRadios1" value="H3"
-    />
-   
-  <label className="form-check-label" for="exampleRadios1">
-    Heading 2
-  </label>
-</div>
-   </section>
-   <section type="section" className="btn cta-btn m-1">
-    <div className="form-check">
-
-  <input className="form-check-input" onChange={this.checkBoxValue} type="radio" name="exampleRadios" id="exampleRadios1" value="H3"
+  <input className="form-check-input" onChange={this.checkBoxValue} type="radio" name="exampleRadios" id="exampleRadios1" value="h3"
    />
    
   <label className="form-check-label" for="exampleRadios1">
@@ -163,7 +181,7 @@ titleSubmit=()=>{
    <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" onChange={this.checkBoxValue} type="radio" name="exampleRadios" id="exampleRadios1" value="H4"
+  <input className="form-check-input" onChange={this.checkBoxValue} type="radio" name="exampleRadios" id="exampleRadios1" value="h4"
    />
    
   <label className="form-check-label" for="exampleRadios1">
@@ -174,7 +192,7 @@ titleSubmit=()=>{
    <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input"onChange={this.checkBoxValue} type="radio" name="exampleRadios" id="exampleRadios1" value="H5"
+  <input className="form-check-input"onChange={this.checkBoxValue} type="radio" name="exampleRadios" id="exampleRadios1" value="h5"
     />
    
   <label className="form-check-label" for="exampleRadios1">
@@ -185,7 +203,7 @@ titleSubmit=()=>{
    <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" onChange={this.checkBoxValue} type="radio" name="exampleRadios" id="exampleRadios1" value="Para"
+  <input className="form-check-input" onChange={this.checkBoxValue} type="radio" name="exampleRadios" id="exampleRadios1" value="p"
    />
    
   <label className="form-check-label" for="exampleRadios1">
