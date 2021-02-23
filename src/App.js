@@ -70,7 +70,8 @@ titleSubmit=()=>{
     let blogContent=[]
     blogContent.push(data)
     let blogData=[...this.state.blogContent,...blogContent]
-    this.setState({blogContent:blogData})
+    this.setState({blogContent:blogData,blogData:""});
+
   }
   parseHtml=()=>{
     let reverseArray=this.state.blogContent
@@ -82,12 +83,7 @@ titleSubmit=()=>{
   render(){
   return (
     <section className="App">
-      <button onClick={this.parseHtml}>
-show
-      </button>
-     { this.state.show?
-   parse(this.state.data)
-     :null}
+     
 <div className="container">
 <nav className="navbar navbar-light bg-dark">
   <a className="navbar-brand" href="#">
@@ -95,6 +91,18 @@ show
   </a>
 </nav>
 </div>
+<div>
+<button onClick={this.parseHtml}>
+show
+      </button>
+     { this.state.show?
+     <div style={{width:'80%',margin:'auto'}}>
+
+  { parse(this.state.data)}
+     </div>
+     :null}
+</div>
+
 <div className='text-center mr-12'> 
 {this.state.showPreview?this.state.title:null}
 <input className="inputTitle" style={this.state.titleStyling}  type="text" onChange={this.onChangeHandler} name="exampleRadios" id="exampleRadios1" placeholder='Title'
@@ -137,8 +145,8 @@ show
       
     </div>
     <div className="col-sm-6">
-     <input type="text" onChange={(e)=>this.setState({blogData:e.target.value})}/>
-     <button type="button"   onClick={this.setData} class="btn btn-secondary bg-dark">Done</button>
+     <input type="text" value={this.state.blogData} onChange={(e)=>this.setState({blogData:e.target.value})}/>
+     <button type="button"   onClick={this.setData}  class="btn btn-secondary bg-dark">Done</button>
   
     </div>
     <div className="col-sm-2 " style={{height:'300px'}}>
