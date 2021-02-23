@@ -68,7 +68,7 @@ input:focus {
 ------------------------*/
 h1, h2, h3, h4, h5, h6{font-family: 'Montserrat', sans-serif; font-weight:normal; margin-top: 0px; margin-bottom: 0px; text-transform: uppercase; letter-spacing: 1px;}
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: inherit; }
-h1 { font-family: 'Montserrat', sans-serif; font-size: 64px; font-style: normal; font-weight: 700; color: #354A21;}
+h1 { font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 700; color: #354A21;}
 h2 { font-family: 'Montserrat', sans-serif; font-size: 56px; font-style: normal; font-weight: 600; color: #354A21;}
 h3 { font-family: 'Montserrat', sans-serif; font-size: 48px; font-style: normal; font-weight: 600; color: #354A21;}
 h4 { font-family: 'Montserrat', sans-serif; font-size: 40px; font-style: normal; font-weight: 600; color: #354A21;}
@@ -120,5 +120,22 @@ a:hover {
   background: #c3d3db;
   color: #643969 !important;
   border: 2px solid #c3d3db ;
+}
+
+
+/* INPUT SECTION*/
+.inputTitle{
+  background-color: white;
+  border:none;
+  margin: 10px;
+  width: 80%;
+  height: 50px;
+  text-align: center;
+  color: black;
+  font-size: 30px;
+}
+.fontSize{
+  width:70px;
+  color:black
 }
 
