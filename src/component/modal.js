@@ -12,8 +12,8 @@ return (
       <div className="modal-dialog">
         <div className="modal-content">
           <div>
-              <img src={props.thumbImage} style={{width:'20px',height:'20px'}}/>
            {props.title}
+              <img src={props.thumbImage} />
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
