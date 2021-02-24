@@ -63,6 +63,12 @@ input:focus {
   font-family: 'Montserrat', sans-serif !important;
 }
 
+.modal-dialog {
+  width: 80%;
+  max-width: 80%  !important;
+  margin: 1.75rem auto;
+  margin-left: 200px;
+}
 /* ------------------------
     Typography
 ------------------------*/
@@ -137,5 +143,16 @@ a:hover {
 .fontSize{
   width:70px;
   color:black
+}
+
+.titleEditBlock{
+  background-color: #c3d3db;
+  
+    width: 42%;
+    margin: auto;
+    /* align-items: center; */
+    /* text-align: center; */
+    padding: 5px;
+    word-spacing: 20px;
 }
 

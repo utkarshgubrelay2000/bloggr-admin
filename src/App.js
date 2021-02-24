@@ -1,6 +1,6 @@
 import './App.css';
 import { Component } from 'react';
-import parse from 'html-react-parser';
+import Preview from './component/modal'
 export default class admin extends Component  {
   state={
     blogContent:[],
@@ -8,10 +8,10 @@ export default class admin extends Component  {
     title:"",
     thumbNail:'',
     data:'<h1>hello</h1>',
-    editTitle:true,
+    editTitle:false,
     showPreview:false,
     titleStyling:{color:'green',textAlign:'center',fontSize:'32px'},
-    blogData:"",show:false
+    blogData:"",imageURL:""
   }
   onChangeHandler=(e)=>{
     this.setState({title:e.target.value,editTitle:true,showPreview:false})
@@ -73,12 +73,27 @@ titleSubmit=()=>{
     this.setState({blogContent:blogData,blogData:""});
 
   }
-  parseHtml=()=>{
-    let reverseArray=this.state.blogContent
-   let all=reverseArray.join()
-   let a=all.replaceAll( ',','')
-   console.log(a)
-     this.setState({show:true ,data:a})
+  imageHandler=(e)=>{
+console.log(e.target.files[0]);
+const formData = new FormData();
+formData.append('file', e.target.files[0]);
+// replace this with your upload preset name
+formData.append('upload_preset', 'pagalworld');
+const options = {
+  method: 'POST',
+  body: formData,
+};
+
+// replace cloudname with your Cloudinary cloud_name
+return fetch('https://api.Cloudinary.com/v1_1/dvu7miswu/image/upload', options)
+  .then(res => res.json())
+  .then(res => {
+    this.setState({imageURL:res.secure_url})
+    console.log(res)
+  })
+  .catch(err => console.log(err));
+// cloudinary.uploader.upload(e.target.files[0], function(error, result) {
+//   console.log(result)})
   }
   render(){
   return (
@@ -89,40 +104,25 @@ titleSubmit=()=>{
   <a className="navbar-brand" href="#">
     <img src="https://getbootstrap.com/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="" loading="lazy"/>
   </a>
+  <button type="button"  className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      Show Preview
+    </button>
 </nav>
 </div>
 <div>
-<button onClick={this.parseHtml}>
-show
-      </button>
-     { this.state.show?
-     <div style={{width:'80%',margin:'auto'}}>
-
-  { parse(this.state.data)}
-     </div>
-     :null}
+  <Preview title={this.state.title} data={this.state.blogContent} thumbImage={this.state.imageURL} />
 </div>
 
-<div className='text-center mr-12'> 
+<div className='mr-12'> 
+<input type='file' onChange={this.imageHandler}/>
 {this.state.showPreview?this.state.title:null}
 <input className="inputTitle" style={this.state.titleStyling}  type="text" onChange={this.onChangeHandler} name="exampleRadios" id="exampleRadios1" placeholder='Title'
     />
-    {this.state.editTitle?<div>
-
-      <div class="btn-toolbar editTitleBar container text-center  mt-3" role="toolbar" aria-label="Toolbar with button groups">
-  <div class="btn-group mr-2" role="group" aria-label="First group">
-    <button type="button" value={600} name='fontWeight'  onClick={this.setTitleStyling} class="btn btn-secondary bg-dark">B</button>
-    <input type="color" name='color' onChange={this.setTitleStyling}
-     class="btn btn-primary" 
-     placeholder='color' />
-    <button type="button" class="btn bg-black" name='textAlign' onClick={this.setTitleStyling}>
-    <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-</svg>
-    </button>
-    <input type="number" name="fontSize" defaultValue="32" onChange={this.setTitleStyling} class="btn fontSize" placeholder='32px'/>
-  </div>
- 
+</div>
+<div className='titleEditBlock'>
+{this.state.editTitle?<div>
+      <div className="btn-toolbar editTitleBar container text-center  mt-3" role="toolbar" aria-label="Toolbar with button groups">
+  <div className="btn-group mr-2" role="group" aria-label="First group">
   <select name="fontFamily" id="fontFamily" onChange={this.setTitleStyling}>
   <option value='Montserrat", sans-serif'>Montserrat</option>
   <option value="Open Sans">Open Sans</option>
@@ -130,14 +130,26 @@ show
   <option value="Times New Roman">Times New Roman</option>
 </select>
    
-  <div class="btn-group" role="group" aria-label="Third group" style={{float:'right'}}>
-    <button type="button" class="btn btn-primary" onClick={this.titleSubmit}>Done</button>
+    <button type="button" value={600} name='fontWeight'  onClick={this.setTitleStyling} 
+    className="btn btn-info">B</button>
+    <input type="color" name='color' onChange={this.setTitleStyling}
+     placeholder='color' />
+    <button type="button" className="btn bg-black" name='textAlign' onClick={this.setTitleStyling}>
+    <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" className="bi bi-justify" viewBox="0 0 16 16">
+  <path fillRule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+</svg>
+    </button>
+    <input type="number" name="fontSize" defaultValue="32" onChange={this.setTitleStyling} className="btn fontSize" placeholder='32px'/>
+  </div>
+ 
+  
+  <div className="btn-group" role="group" aria-label="Third group" style={{float:'right'}}>
+    <button type="button" className="cta-btn" onClick={this.titleSubmit}>Done</button>
   </div>
 </div>
 
 
-    </div>:null}
-</div>
+    </div>:null}</div>
 <div className='p-4 m-2'> 
 
   <div className="row bg-light">
@@ -146,10 +158,10 @@ show
     </div>
     <div className="col-sm-6">
      <input type="text" value={this.state.blogData} onChange={(e)=>this.setState({blogData:e.target.value})}/>
-     <button type="button"   onClick={this.setData}  class="btn btn-secondary bg-dark">Done</button>
+     <button type="button"   onClick={this.setData}  className="btn btn-secondary bg-dark">Done</button>
   
     </div>
-    <div className="col-sm-2 " style={{height:'300px'}}>
+    <div className="col-sm-2 " style={{height:'300px',position:'fixed'}}>
     <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
@@ -165,16 +177,15 @@ show
    <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-  <input className="form-check-input" type="radio" onChange={this.checkBoxValue}  
-  name="exampleRadios" id="exampleRadios1" value="h2"
-    />
    
   <label className="form-check-label" for="exampleRadios1">
+  <input className="form-check-input" type="radio" onChange={this.checkBoxValue}  
+  name="exampleRadios" id="exampleRadios1" value="h2" 
+    />
     Heading 2
   </label>
 </div>
    </section>
-
    <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
@@ -219,12 +230,11 @@ show
   </label>
 </div>
    </section>
-
    <section type="section" className="btn cta-btn m-1">
     <div className="form-check">
 
-    <input type="file" class="form-control-file" id="exampleFormControlFile1" style={{display:'none'}}/>
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-plus" viewBox="0 0 16 16">
+    <input type="file" className="form-control-file" id="exampleFormControlFile1" style={{display:'none'}}/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" className="bi bi-plus" viewBox="0 0 16 16">
   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 </svg>
   <label className="form-check-label" for="exampleRadios1">
@@ -237,6 +247,10 @@ show
     </div>
 </div>
 </div>
+  
+  
+  
+  
     </section>
   ); }
 }
